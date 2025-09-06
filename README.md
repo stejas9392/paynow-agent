@@ -108,3 +108,13 @@ Performance optimized by early validations, in-memory rate limiting, and efficie
 CustomerId is considered PII → Masked in logs using ***last3digits.
 
 API key required to secure endpoints.
+
+
+## 🚀 Optional To-Dos / Future Enhancements
+
+The following ideas are not implemented yet, but could be added later for a more production-like setup:
+
+- [ ] **Event Publishing** – Emit a `payment.decided` event to an in-memory queue or simply log it to `stdout` (to simulate a Kafka integration).
+- [ ] **Evaluation Harness** – Maintain a JSON file with ~5 test cases and expected decisions. Write a script to replay them against the API and tally accuracy.
+
+These are marked as optional and were not part of the initial implementation scope.
