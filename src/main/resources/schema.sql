@@ -1,0 +1,32 @@
+CREATE TABLE IF NOT EXISTS idempotency (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    customer_id BIGINT NOT NULL,
+    idempotency_key TEXT NOT NULL,
+    status TEXT NOT NULL CHECK (status IN ('IN_PROGRESS','COMPLETED')),
+    response_json TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (customer_id, idempotency_key)
+);
+
+
+CREATE TABLE IF NOT EXISTS balances(
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+customer_id INTEGER NOT NULL UNIQUE,
+balance_cents INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS risk_signals(
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+customer_id INTEGER NOT NULL UNIQUE,
+recent_disputes INTEGER NOT NULL,
+device_change INTEGER NOT NULL
+);
+
+
+CREATE TABLE IF NOT EXISTS cases(
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+customer_id INTEGER NOT NULL,
+decision TEXT NOT NULL,
+reason_summary TEXT NOT NULL,
+created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
